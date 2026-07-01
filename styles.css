@@ -1,0 +1,287 @@
+/* Charity: water Brand Colors
+
+Primary Colors:
+- Yellow:     #FFC907
+- Blue:       #2E9DF7
+
+Secondary Colors:
+- Light Blue: #8BD1CB
+- Green:      #4FCB53
+- Orange:     #FF902A
+- Red:        #F5402C
+- Dark Green: #159A48
+- Pink:       #F16061
+- Space Indigo: #111D4A
+*/
+
+:root {
+    --cw-navy: #1f3ead;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 2rem;
+    font-family: "PT Serif", serif;
+    background: linear-gradient(135deg, #5C8FFF80 50%, transparent 0), linear-gradient(-135deg, #5C8FFF80 50%, transparent 0);
+    background-size: 6em 6em;
+    background-color: #81b4f6;
+    opacity: 1;
+}
+
+.pt-serif-regular {
+    font-family: "PT Serif", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.pt-serif-bold {
+    font-family: "PT Serif", serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.pt-serif-regular-italic {
+    font-family: "PT Serif", serif;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.pt-serif-bold-italic {
+    font-family: "PT Serif", serif;
+    font-weight: 700;
+    font-style: italic;
+}
+.page-shell {
+    width: min(720px, 95vw);
+    max-height: 100vh;
+    padding: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.game-container {
+    position: relative;
+    width: min(460px, 100%);
+    max-height: calc(100vh - 4rem);
+    margin: 0 auto;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+    border-radius: 24px;
+    overflow: hidden;
+}
+
+.score-panel {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    right: 1rem;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.8rem 1rem;
+    background: rgba(255, 255, 255, 0.88);
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    border-radius: 1rem;
+    box-shadow: 0 18px 30px rgba(0, 0, 0, 0.12);
+    backdrop-filter: blur(8px);
+}
+
+.score-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: #111D4A;
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+.refresh-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid rgba(17, 29, 74, 0.25);
+    background: rgba(161, 246, 255, 0.96);
+    border-radius: 50%;
+    color: #162f8a;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.refresh-button:hover {
+    transform: scale(1.05);
+    background: #f5f7ff;
+}
+
+.score-label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #395069;
+}
+
+.currency-icon {
+    width: 2.1rem;
+    height: auto;
+    display: block;
+}
+
+canvas {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 9 / 16;
+    max-height: calc(100vh - 4rem - min(12rem, 15vh));
+    background: #8BD1CB;
+}
+
+.ground-plain {
+    width: 100%;
+    height: min(12rem, 15vh);
+    background: linear-gradient(180deg, #74c97b 0%, #4FCB53 75%, #2d8b26 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.ground-plain::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 15% 35%, rgba(255, 255, 255, 0.18) 0%, transparent 22%),
+        radial-gradient(circle at 70% 45%, rgba(255, 255, 255, 0.12) 0%, transparent 20%);
+}
+
+.ground-plain::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: -2rem;
+    width: 130%;
+    height: 8rem;
+    background: radial-gradient(circle at 50% 50%, rgba(57, 132, 70, 0.8), transparent 0%);
+    transform: translateX(-50%);
+}
+
+.crops {
+    position: absolute;
+    left: 0.8rem;
+    bottom: 3rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.crop {
+    width: 2.4rem;
+    height: 2rem;
+    display: inline-block;
+    object-fit: contain;
+    filter: grayscale(1) sepia(1) hue-rotate(18deg) saturate(4) brightness(1.1) contrast(1.1);
+}
+
+.village {
+    position: absolute;
+    right: 1rem;
+    bottom: 3rem;
+    display: flex;
+    gap: 0.6rem;
+    align-items: flex-end;
+}
+
+.village::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -0.4rem;
+    width: calc(100% + 1rem);
+    height: 0.7rem;
+    transform: translateX(-50%);
+    background: radial-gradient(circle at 50% 20%, rgba(0, 0, 0, 0.18), transparent 60%);
+    filter: blur(0.2rem);
+}
+
+.house {
+    width: 2.4rem;
+    height: 2rem;
+    display: inline-block;
+    object-fit: contain;
+}
+
+.house-2 {
+    transform: scale(0.95) translateY(0.15rem);
+}
+
+.house-3 {
+    transform: scale(0.85) translateY(0.25rem);
+}
+
+@media (max-width: 520px) {
+    .page-shell {
+        padding: 0 0 1.5rem;
+    }
+
+    .ground-plain {
+        height: 10rem;
+    }
+}
+:root {
+    --cw-sky: #77A8BB;
+    /* ... rest of your palette */
+}
+
+body {
+    background-color: var(--cw-sky);
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.wheat-icon {
+    width: 2.1rem;
+    height: 1.8rem;
+    display: inline-block;
+    transition: transform 0.2s;
+}
+
+.wheat-icon:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+.confetti-container {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    overflow: hidden;
+}
+
+.confetti-piece {
+    position: absolute;
+    top: -1rem;
+    width: 0.5rem;
+    height: 0.9rem;
+    opacity: 0.95;
+    border-radius: 0.15rem;
+    animation: confetti-fall 2.5s ease-out both;
+}
+
+@keyframes confetti-fall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+    }
+}

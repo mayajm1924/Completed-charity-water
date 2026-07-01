@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charity Water Game</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display+SC:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main class="page-shell">
+        <h1>Welcome to the Charity Water Game Prototype</h1>
+        <div class="game-container">
+            <div class="score-panel">
+                <div class="score-item score-timer">
+                    <span class="score-label">Time</span>
+                    <span id="scoreTimer">00:00</span>
+                    <button id="refreshTimer" class="refresh-button" title="Reset timer">↻</button>
+                </div>
+                <div class="score-item score-day">
+                    <span class="score-label">Day</span>
+                    <span id="dayCounter">1</span>
+                </div>
+                <div class="score-item score-currency">
+                    <img class="currency-icon" src="img/cw_logo.png" alt="Currency logo">
+                    <span id="currencyValue">0</span>
+                </div>
+            </div>
+            <canvas id="gameCanvas" width="360" height="640"></canvas>
+            <div class="ground-plain">
+                <div class="crops">
+                    <img class="crop wheat-icon" src="img/wheat.svg" alt="Wheat crop">
+                    <img class="crop wheat-icon" src="img/wheat.svg" alt="Wheat crop">
+                    <img class="crop wheat-icon" src="img/wheat.svg" alt="Wheat crop">
+                </div>
+                <div class="village">
+                    <img class="house house-1" src="img/house.svg" alt="Village house">
+                    <img class="house house-2" src="img/house.svg" alt="Village house">
+                    <img class="house house-3" src="img/house.svg" alt="Village house">
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
