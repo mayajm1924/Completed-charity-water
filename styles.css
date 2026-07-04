@@ -22,14 +22,33 @@ body {
     margin: 0;
     min-height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     padding-top: 2rem;
     font-family: "PT Serif", serif;
     background: linear-gradient(135deg, #5C8FFF80 50%, transparent 0), linear-gradient(-135deg, #5C8FFF80 50%, transparent 0);
     background-size: 6em 6em;
     background-color: #81b4f6;
     opacity: 1;
+}
+
+@keyframes sky-cycle {
+    0% {
+        background-color: #FFCC99;
+    }
+    50% {
+        background-color: #87CEEB;
+    }
+    100% {
+        background-color: #4B0082;
+    }
+}
+
+.game-container {
+    animation: sky-cycle 180s linear infinite;
+    animation-play-state: paused;
+    background-color: #FFCC99;
 }
 
 .pt-serif-regular {
@@ -64,6 +83,20 @@ body {
     align-items: center;
     justify-content: center;
     gap: 1rem;
+}
+
+.page-footer {
+    margin: 1rem 0 2rem;
+}
+
+.page-footer a {
+    color: #111D4A;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.page-footer a:hover {
+    text-decoration: underline;
 }
 
 .game-container {
@@ -123,6 +156,97 @@ body {
     background: #f5f7ff;
 }
 
+.start-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(17, 29, 74, 0.45);
+    backdrop-filter: blur(4px);
+}
+
+.start-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.start-dialog {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1.25rem;
+    border-radius: 1.2rem;
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.start-dialog h2 {
+    margin: 0;
+    color: #111D4A;
+    font-size: 1.2rem;
+}
+
+.difficulty-buttons {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.difficulty-button {
+    border: 1px solid rgba(17, 29, 74, 0.2);
+    border-radius: 999px;
+    padding: 0.5rem 0.9rem;
+    background: #f5f7ff;
+    color: #111D4A;
+    font-family: "PT Serif", serif;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.difficulty-button.active {
+    background: #2E9DF7;
+    color: white;
+}
+
+.difficulty-hint {
+    margin: 0;
+    color: #395069;
+    font-size: 0.95rem;
+}
+
+.start-game-button {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.65rem;
+    border: none;
+    border-radius: 1.2rem;
+    padding: 1rem 1.2rem;
+    background: rgba(255, 255, 255, 0.95);
+    color: #111D4A;
+    font-family: "PT Serif", serif;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.2);
+}
+
+.start-game-button img {
+    width: 4rem;
+    height: auto;
+    display: block;
+}
+
+.start-game-button:hover {
+    transform: translateY(-2px);
+}
+
 .score-label {
     font-size: 0.72rem;
     text-transform: uppercase;
@@ -151,6 +275,12 @@ canvas {
     background: linear-gradient(180deg, #74c97b 0%, #4FCB53 75%, #2d8b26 100%);
     position: relative;
     overflow: hidden;
+}
+
+/* Dry / yellowish-green variant when player fails to reach goal */
+.ground-plain.dry-grass,
+.ground-plain.dry {
+    background: linear-gradient(180deg, #e6f17a 0%, #d6e96a 75%, #cbd64a 100%);
 }
 
 .ground-plain::before {
@@ -186,6 +316,32 @@ canvas {
     display: inline-block;
     object-fit: contain;
     filter: grayscale(1) sepia(1) hue-rotate(18deg) saturate(4) brightness(1.1) contrast(1.1);
+}
+
+.flower-reward {
+    position: absolute;
+    left: 50%;
+    bottom: 3.3rem;
+    display: flex;
+    gap: 0.7rem;
+    transform: translateX(-50%) translateY(0.45rem);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.ground-plain.flowers-visible .flower-reward {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+.flower {
+    font-size: 1.45rem;
+    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.16));
+}
+
+.flower-2 {
+    font-size: 1.25rem;
 }
 
 .village {
@@ -254,6 +410,116 @@ body {
 
 .wheat-icon:hover {
     transform: scale(1.2);
+    cursor: pointer;
+}
+
+.upgrade-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 25;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(17, 29, 74, 0.5);
+    backdrop-filter: blur(4px);
+}
+
+.upgrade-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.upgrade-dialog {
+    width: min(90%, 24rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1.2rem;
+    border-radius: 1.2rem;
+    background: rgba(255, 255, 255, 0.97);
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.upgrade-dialog h2 {
+    margin: 0;
+    color: #111D4A;
+    font-size: 1.2rem;
+}
+
+.upgrade-hint {
+    margin: 0;
+    color: #395069;
+    font-size: 0.92rem;
+}
+
+.upgrade-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+}
+
+.upgrade-card {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    border: 1px solid rgba(17, 29, 74, 0.16);
+    border-radius: 1rem;
+    padding: 0.8rem 0.9rem;
+    background: #f8fbff;
+    color: #111D4A;
+    font-family: "PT Serif", serif;
+    text-align: left;
+    cursor: pointer;
+}
+
+.upgrade-card:hover {
+    transform: translateY(-1px);
+}
+
+.upgrade-card.disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+.upgrade-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.upgrade-name {
+    font-weight: 700;
+}
+
+.upgrade-icon {
+    width: 1.5rem;
+}
+
+.upgrade-description {
+    margin: 0;
+    color: #395069;
+    font-size: 0.9rem;
+}
+
+.upgrade-cost {
+    font-weight: 700;
+    color: #2E9DF7;
+}
+
+.close-upgrade-button {
+    border: none;
+    border-radius: 999px;
+    padding: 0.6rem 1rem;
+    background: #2E9DF7;
+    color: white;
+    font-family: "PT Serif", serif;
+    font-weight: 700;
     cursor: pointer;
 }
 

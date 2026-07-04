@@ -11,12 +11,12 @@
 </head>
 <body>
     <main class="page-shell">
-        <h1>Welcome to the Charity Water Game Prototype</h1>
+        <h1>Welcome to the Charity Water Game</h1>
         <div class="game-container">
             <div class="score-panel">
                 <div class="score-item score-timer">
                     <span class="score-label">Time</span>
-                    <span id="scoreTimer">00:00</span>
+                    <span id="scoreTimer">0:00</span>
                     <button id="refreshTimer" class="refresh-button" title="Reset timer">↻</button>
                 </div>
                 <div class="score-item score-day">
@@ -28,12 +28,57 @@
                     <span id="currencyValue">0</span>
                 </div>
             </div>
+            <div id="startOverlay" class="start-overlay hidden">
+                <div class="start-dialog">
+                    <h2>Choose a difficulty</h2>
+                    <div class="difficulty-buttons" role="group" aria-label="Difficulty selection">
+                        <button class="difficulty-button active" type="button" data-difficulty="easy">Easy</button>
+                        <button class="difficulty-button" type="button" data-difficulty="medium">Medium</button>
+                        <button class="difficulty-button" type="button" data-difficulty="hard">Hard</button>
+                    </div>
+                    <p id="difficultyHint" class="difficulty-hint">Daily goal: 50 points</p>
+                    <button id="startGameButton" class="start-game-button" type="button" aria-label="Start game">
+                        <img src="img/cw_logo.png" alt="Jerry can start button">
+                        <span>Start Game</span>
+                    </button>
+                </div>
+            </div>
+            <div id="upgradeOverlay" class="upgrade-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="upgradeTitle">
+                <div class="upgrade-dialog">
+                    <h2 id="upgradeTitle">Upgrades</h2>
+                    <p class="upgrade-hint">Spend your earned points on better water flow and village efficiency.</p>
+                    <div class="upgrade-list">
+                        <button class="upgrade-card" type="button" data-upgrade="distribution">
+                            <div class="upgrade-title-row">
+                                <span class="upgrade-name">Improved water distribution tech</span>
+                                <img class="currency-icon upgrade-icon" src="img/cw_logo.png" alt="Currency icon">
+                            </div>
+                            <p class="upgrade-description">Reduces the cloud clicks needed to hydrate the plain by 1.</p>
+                            <div class="upgrade-cost">Cost: <span class="upgrade-cost-value">50</span></div>
+                        </button>
+                        <button class="upgrade-card" type="button" data-upgrade="village">
+                            <div class="upgrade-title-row">
+                                <span class="upgrade-name">Village house efficiency</span>
+                                <img class="currency-icon upgrade-icon" src="img/cw_logo.png" alt="Currency icon">
+                            </div>
+                            <p class="upgrade-description">Earn +5 points every 3 in-game days.</p>
+                            <div class="upgrade-cost">Cost: <span class="upgrade-cost-value">50</span></div>
+                        </button>
+                    </div>
+                    <button id="closeUpgradeMenuButton" class="close-upgrade-button" type="button">Close</button>
+                </div>
+            </div>
             <canvas id="gameCanvas" width="360" height="640"></canvas>
             <div class="ground-plain">
                 <div class="crops">
                     <img class="crop wheat-icon" src="img/wheat.svg" alt="Wheat crop">
                     <img class="crop wheat-icon" src="img/wheat.svg" alt="Wheat crop">
                     <img class="crop wheat-icon" src="img/wheat.svg" alt="Wheat crop">
+                </div>
+                <div class="flower-reward" aria-hidden="true">
+                    <span class="flower flower-1">🌼</span>
+                    <span class="flower flower-2">🌸</span>
+                    <span class="flower flower-3">🌼</span>
                 </div>
                 <div class="village">
                     <img class="house house-1" src="img/house.svg" alt="Village house">
@@ -43,6 +88,11 @@
             </div>
         </div>
     </main>
+    <footer class="page-footer">
+        <a href="https://www.charitywater.org/" target="_blank" rel="noopener noreferrer">charity: water</a>
+        <span> | </span>
+        <a href="https://www.charitywater.org/take-action" target="_blank" rel="noopener noreferrer">Take Action!</a>
+    </footer>
     <script src="script.js"></script>
 </body>
 </html>
